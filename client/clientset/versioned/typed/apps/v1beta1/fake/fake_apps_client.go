@@ -12,6 +12,10 @@ type FakeAppsV1beta1 struct {
 	*testing.Fake
 }
 
+func (c *FakeAppsV1beta1) GlobalDBs(namespace string) v1beta1.GlobalDBInterface {
+	return &FakeGlobalDBs{c, namespace}
+}
+
 func (c *FakeAppsV1beta1) Webs(namespace string) v1beta1.WebInterface {
 	return &FakeWebs{c, namespace}
 }

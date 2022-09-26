@@ -2,6 +2,14 @@
 
 package v1beta1
 
+// GlobalDBListerExpansion allows custom methods to be added to
+// GlobalDBLister.
+type GlobalDBListerExpansion interface{}
+
+// GlobalDBNamespaceListerExpansion allows custom methods to be added to
+// GlobalDBNamespaceLister.
+type GlobalDBNamespaceListerExpansion interface{}
+
 // WebListerExpansion allows custom methods to be added to
 // WebLister.
 type WebListerExpansion interface{}

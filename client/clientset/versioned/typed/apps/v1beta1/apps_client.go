@@ -12,12 +12,17 @@ import (
 
 type AppsV1beta1Interface interface {
 	RESTClient() rest.Interface
+	GlobalDBsGetter
 	WebsGetter
 }
 
 // AppsV1beta1Client is used to interact with features provided by the apps.ysicing.me group.
 type AppsV1beta1Client struct {
 	restClient rest.Interface
+}
+
+func (c *AppsV1beta1Client) GlobalDBs(namespace string) GlobalDBInterface {
+	return newGlobalDBs(c, namespace)
 }
 
 func (c *AppsV1beta1Client) Webs(namespace string) WebInterface {

@@ -8,6 +8,8 @@ import (
 
 // Interface provides access to all the informers in this group version.
 type Interface interface {
+	// GlobalDBs returns a GlobalDBInformer.
+	GlobalDBs() GlobalDBInformer
 	// Webs returns a WebInformer.
 	Webs() WebInformer
 }
@@ -21,6 +23,11 @@ type version struct {
 // New returns a new Interface.
 func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
 	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
+}
+
+// GlobalDBs returns a GlobalDBInformer.
+func (v *version) GlobalDBs() GlobalDBInformer {
+	return &globalDBInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
 // Webs returns a WebInformer.
